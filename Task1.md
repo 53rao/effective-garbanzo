@@ -213,14 +213,18 @@ cat /tmp/flag_fifo
 ```
 >Flag :pwn.college{s4qCojEoa1Z2sECcECfh7WBi_QF.01MzMDOxwyNwcTNxEzW}
 
-## 1.3 bashrc
-### 1.3.1 : 
+## 1.3 Silly Shenanigans
 
+### 1.3.1 : Bashrc Backdoor
+In this challenge, we'll pretend that you've broken into a victim user's machine! That user is named zardus, with a home directory of /home/zardus. You, as the hacker user, have write access to his .bashrc, and zardus has read-access to /flag. The victim is simulated by the script /challenge/victim, and you can launch this script at any time to observe the victim logging into the computer. Can you get the flag?
 #### Solving :
 ```
-
+cd /home/zaradus
+nano .bashrc
+#In the file add cat /flag
+/challenge/victim
 ```
->Flag :
+>Flag :pwn.college{U2dTSoOw-_qNs-ivnnsmcxe2WPt.0VMzEzNxwyNwcTNxEzW}
 ### 1.3.2 : 
 
 #### Solving :
@@ -256,5 +260,25 @@ cat /tmp/flag_fifo
 
 ```
 >Flag :
-## Silly Shenaningans
-### Bashrc Backdoor
+
+
+# Webex
+## HTML SourceCode
+
+The source code of the webpage gives the password which is also the flag
+>Flag : nZ^&@q5&sjJHev0
+# Cryptography
+## 3.2 
+Easy Frequency Analysis question where each letter is
+replaced by an emoji:
+The most common letters in the English language are E, T, A, O, I, N, S, H, R on mapping it with the emojis we get  Ulysses by James Joyce.
+
+
+
+
+
+
+
+
+
+
