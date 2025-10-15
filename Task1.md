@@ -262,11 +262,52 @@ nano .bashrc
 >Flag :
 
 
-# Webex
-## HTML SourceCode
-
+# 2.Webex
+## 2.1 HTML SourceCode
+### Solving :
 The source code of the webpage gives the password which is also the flag
 >Flag : nZ^&@q5&sjJHev0
+## 2.2 
+### Solving 
+I solved this question again cause i forgot to store the flag the first time .
+We have to add X-Forwarded-For: 10.0.0.0 header and only 10.0.0.0 to 10.255.255.255 works not other IP Address since 
+### The entire range of 10.0.0.0 to 10.255.255.255 (known in networking as the 10.0.0.0/8 prefix) is completely reserved for private networks (LANs)
+
+### Doubt : I have doubts in how subnetting and private ip and public ip work 
+>Flag :Ip_$po0Fing
+## 2.3 HTTP Oenredirect
+Find a way to make a redirection to a domain other than those showed on the web page.
+### Solving :
+
+![alt text](image.png)
+When we view the request on clicking a link through burpsuite ,we see two fields website link and hash (in this case md5) .So we have to change botht the url and hash inorder to get the flag
+```
+url=https://reddit.com
+h=a95df25a09475babd575fc50f0b0eca1
+```
+>Flag : e6f8a530811d5a479812d7b82fc1a5c5
+
+## 2.4User agent
+Admin is really dumb...
+### Solving :
+The website had the text you are not in the "admin" browser so i just changed the 'user agent' part which holds browser info into admin and got the flag 
+>Flag : rr$Li9%L34qd1AAe27
+## 2.5 weak password
+My first instinct was to try admin admin but it didnt work for some reason ,so i checked the source code when we type something in and the request was as follows
+```
+GET /web-serveur/ch3/ HTTP/1.1
+Host: challenge01.root-me.org
+Cache-Control: max-age=0
+Authorization: Basic YWRtaW46 <<<<<<-- I noticed this and it was admin in base 64
+Accept-Language: en-US,en;q=0.9
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+```
+Tried admin and empty string didnt work ,at the end when i typed admin admin it worked :|
+>admin
 # Cryptography
 ## 3.2 
 Easy Frequency Analysis question where each letter is
