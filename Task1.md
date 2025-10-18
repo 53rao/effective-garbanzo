@@ -314,7 +314,10 @@ Easy Frequency Analysis question where each letter is
 replaced by an emoji:
 The most common letters in the English language are E, T, A, O, I, N, S, H, R on mapping it with the emojis we get  Ulysses by James Joyce.
 
-
+## 3.3 Spiral Cipher
+cipher:taskphaWL_PL4sOingpYefdngaP{_diddL40ap}y5rn_s1m37
+## Solving : Just used dcode to the solve the cipher not sure if the flag i got is right though
+>Flag : 	taskphase{4r73m1s_n0_fOWL_PL4YPL5y}paddingpadding
 
 
 
